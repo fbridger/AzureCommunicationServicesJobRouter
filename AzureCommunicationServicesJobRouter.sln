@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35201.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureCommunicationServicesJobRouter", "AzureCommunicationServicesJobRouter\AzureCommunicationServicesJobRouter.csproj", "{4B4E7B1D-8C40-4BCE-BD09-D69A7BC62886}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobRouterEventParser", "JobRouterEventParser\JobRouterEventParser.csproj", "{DCF91FEB-C05B-4EAF-B9F4-891428177693}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBusReceiver", "ServiceBusReceiver\ServiceBusReceiver.csproj", "{E83B8774-1377-4798-BE84-53650724EFB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B4E7B1D-8C40-4BCE-BD09-D69A7BC62886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B4E7B1D-8C40-4BCE-BD09-D69A7BC62886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B4E7B1D-8C40-4BCE-BD09-D69A7BC62886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4E7B1D-8C40-4BCE-BD09-D69A7BC62886}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF91FEB-C05B-4EAF-B9F4-891428177693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF91FEB-C05B-4EAF-B9F4-891428177693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF91FEB-C05B-4EAF-B9F4-891428177693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF91FEB-C05B-4EAF-B9F4-891428177693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E83B8774-1377-4798-BE84-53650724EFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E83B8774-1377-4798-BE84-53650724EFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E83B8774-1377-4798-BE84-53650724EFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E83B8774-1377-4798-BE84-53650724EFB4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BAAD5F3-959F-4D3C-8F8D-6ED9C4622A7A}
+	EndGlobalSection
+EndGlobal
