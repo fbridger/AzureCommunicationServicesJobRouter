@@ -81,7 +81,6 @@
             Tags = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             workerBindingBindingSource = new BindingSource(components);
-            btnWorkerClearQueueAssignments = new Button();
             btnDeleteWorker = new Button();
             grpJobs = new GroupBox();
             btnUpdateJob = new Button();
@@ -134,7 +133,7 @@
             txtTrace.Multiline = true;
             txtTrace.Name = "txtTrace";
             txtTrace.ScrollBars = ScrollBars.Vertical;
-            txtTrace.Size = new Size(1580, 372);
+            txtTrace.Size = new Size(1661, 372);
             txtTrace.TabIndex = 0;
             // 
             // btnStart
@@ -415,7 +414,6 @@
             grpWorkers.Controls.Add(btnRegisterWorker);
             grpWorkers.Controls.Add(btnCreateWorker);
             grpWorkers.Controls.Add(dgWorkers);
-            grpWorkers.Controls.Add(btnWorkerClearQueueAssignments);
             grpWorkers.Controls.Add(btnDeleteWorker);
             grpWorkers.Location = new Point(6, 6);
             grpWorkers.Name = "grpWorkers";
@@ -587,16 +585,6 @@
             // workerBindingBindingSource
             // 
             workerBindingBindingSource.DataSource = typeof(BindingModels.WorkerBinding);
-            // 
-            // btnWorkerClearQueueAssignments
-            // 
-            btnWorkerClearQueueAssignments.Location = new Point(702, 178);
-            btnWorkerClearQueueAssignments.Name = "btnWorkerClearQueueAssignments";
-            btnWorkerClearQueueAssignments.Size = new Size(110, 23);
-            btnWorkerClearQueueAssignments.TabIndex = 7;
-            btnWorkerClearQueueAssignments.Text = "Clear Queues";
-            btnWorkerClearQueueAssignments.UseVisualStyleBackColor = true;
-            btnWorkerClearQueueAssignments.Click += btnWorkerClearQueueAssignments_Click;
             // 
             // btnDeleteWorker
             // 
@@ -842,7 +830,7 @@
             grpTraces.Controls.Add(txtTrace);
             grpTraces.Location = new Point(12, 500);
             grpTraces.Name = "grpTraces";
-            grpTraces.Size = new Size(1592, 400);
+            grpTraces.Size = new Size(1673, 400);
             grpTraces.TabIndex = 30;
             grpTraces.TabStop = false;
             grpTraces.Text = "Traces";
@@ -855,8 +843,8 @@
             ClientSize = new Size(1697, 912);
             Controls.Add(grpTraces);
             Controls.Add(tabControl1);
-            Controls.Add(btnStart);
             Controls.Add(menuStrip1);
+            Controls.Add(btnStart);
             MainMenuStrip = menuStrip1;
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;

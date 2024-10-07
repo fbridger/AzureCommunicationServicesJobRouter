@@ -1349,28 +1349,6 @@ namespace AzureCommunicationServicesJobRouter
             }
         }
 
-        private async void btnWorkerClearQueueAssignments_Click(object sender, EventArgs e)
-        {
-            List<string> workerIds = GetSelectedDataGridViewIds(dgWorkers);
-
-            if (workerIds.Count > 0)
-            {
-                foreach (var workerId in workerIds)
-                {
-                    DialogResult dialogResult = MessageBox.Show($"Are you sure you want to clear worker with Id '{workerId}' queue assignments?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        var worker = await _routerClient.GetWorkerAsync(workerId);
-
-                        worker.Value.Queues.Clear();
-
-                        worker = await _routerClient.UpdateWorkerAsync(worker);
-                    }
-                }
-            }
-        }
-
         private void dgWorkers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             foreach (DataGridViewRow row in dgWorkers.Rows)
