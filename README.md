@@ -6,7 +6,7 @@ This is an unofficial tool to test the [Azure Communication Services Job Router]
 To run this tool, you need to have the following:
 + An [Azure Communication Services](https://learn.microsoft.com/en-us/azure/communication-services/overview) resource. You can create the resource by following the steps mentioned here [Job Router Prerequesets](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/router/get-started-router?pivots=programming-language-csharp#prerequisites).
 + An [Azure Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) resource with a namespace and queue. You can create the resource by following the public documentation on how to [Use Azure portal to create a Service Bus namespace and a queue](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-portal).
-+ .Net 8.0 or later. You can download it from [.Net download page](https://dotnet.microsoft.com/en-us/download/dotnet).
++ .Net 8.0. You can download it from [.Net download page](https://dotnet.microsoft.com/en-us/download/dotnet).
 
 
 ## Before You Run
