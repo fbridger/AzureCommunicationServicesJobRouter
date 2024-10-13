@@ -82,7 +82,7 @@ namespace AzureCommunicationServicesJobRouter
             }
         }
 
-        public static RouterValue GetRouterValue(string key, string valueType, string value)
+        public static RouterValue GetRouterValue(string key, string value, string valueType)
         {
             switch (valueType)
             {
@@ -102,20 +102,7 @@ namespace AzureCommunicationServicesJobRouter
 
         public static KeyValuePair<string, RouterValue> GetRouterValueEntry(string name, string value, string valueType)
         {
-            switch (valueType)
-            {
-                case ValueType.Number:
-                    return new KeyValuePair<string, RouterValue>(name, new RouterValue(Convert.ToInt32(value)));
-
-                case ValueType.String:
-                    return new KeyValuePair<string, RouterValue>(name, new RouterValue(value));
-
-                case ValueType.Boolean:
-                    return new KeyValuePair<string, RouterValue>(name, new RouterValue(Convert.ToBoolean(value)));
-
-                default:
-                    throw new ArgumentOutOfRangeException(name, value, $"Value is out of range. Expected values are: Number, String, and Boolean");
-            }
+            return new KeyValuePair<string, RouterValue>(name, Helper.GetRouterValue(name, value, valueType));
         }
     }
 

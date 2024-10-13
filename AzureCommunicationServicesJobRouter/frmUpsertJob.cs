@@ -101,7 +101,7 @@ namespace AzureCommunicationServicesJobRouter
                     {
                         LabelOperator labelOperator = GetLabelOperator(selector.Cells[DgWorkerSelectorColumnId.Operator].Value.ToString());
                         string key = selector.Cells[DgWorkerSelectorColumnId.Key].Value.ToString();
-                        RouterValue routerValue = Helper.GetRouterValue(key, selector.Cells[DgWorkerSelectorColumnId.ValueType].Value.ToString(), selector.Cells[DgWorkerSelectorColumnId.Value].Value.ToString());
+                        RouterValue routerValue = Helper.GetRouterValue(key, selector.Cells[DgWorkerSelectorColumnId.Value].Value.ToString(), selector.Cells[DgWorkerSelectorColumnId.ValueType].Value.ToString());
 
                         Job.RequestedWorkerSelectors.Add(new RouterWorkerSelector(key, labelOperator, routerValue));
                     }
@@ -146,7 +146,7 @@ namespace AzureCommunicationServicesJobRouter
 
             if (labelOperator.Equals(LabelOperator.Equal))
             {
-                label = "=";
+                label = "==";
             }
             else if (labelOperator.Equals(LabelOperator.NotEqual))
             {
@@ -182,7 +182,7 @@ namespace AzureCommunicationServicesJobRouter
 
             switch (labelOperatorString)
             {
-                case "=":
+                case "==":
                     labelOperator = LabelOperator.Equal;
                     break;
 
