@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             txtTrace = new TextBox();
-            btnStart = new Button();
             btnCreateDistPolicy = new Button();
             grpDistributionPolicies = new GroupBox();
             btnUpdateDistPolicy = new Button();
@@ -133,18 +132,8 @@
             txtTrace.Multiline = true;
             txtTrace.Name = "txtTrace";
             txtTrace.ScrollBars = ScrollBars.Vertical;
-            txtTrace.Size = new Size(1661, 372);
+            txtTrace.Size = new Size(1657, 372);
             txtTrace.TabIndex = 0;
-            // 
-            // btnStart
-            // 
-            btnStart.Location = new Point(1610, 522);
-            btnStart.Name = "btnStart";
-            btnStart.Size = new Size(75, 23);
-            btnStart.TabIndex = 1;
-            btnStart.Text = "button1";
-            btnStart.UseVisualStyleBackColor = true;
-            btnStart.Click += btnStart_Click;
             // 
             // btnCreateDistPolicy
             // 
@@ -692,9 +681,9 @@
             // enqueueAtDataGridViewTextBoxColumn
             // 
             enqueueAtDataGridViewTextBoxColumn.DataPropertyName = "EnqueueAt";
-            dataGridViewCellStyle3.Format = "yyyy-MM-dd HH:mm";
-            dataGridViewCellStyle3.NullValue = null;
-            enqueueAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm";
+            dataGridViewCellStyle1.NullValue = null;
+            enqueueAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             enqueueAtDataGridViewTextBoxColumn.HeaderText = "Enqueue UTC";
             enqueueAtDataGridViewTextBoxColumn.Name = "enqueueAtDataGridViewTextBoxColumn";
             enqueueAtDataGridViewTextBoxColumn.ReadOnly = true;
@@ -703,9 +692,9 @@
             // scheduleAtDataGridViewTextBoxColumn
             // 
             scheduleAtDataGridViewTextBoxColumn.DataPropertyName = "ScheduleAt";
-            dataGridViewCellStyle4.Format = "yyyy-MM-dd HH:mm";
-            dataGridViewCellStyle4.NullValue = null;
-            scheduleAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "yyyy-MM-dd HH:mm";
+            dataGridViewCellStyle2.NullValue = null;
+            scheduleAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             scheduleAtDataGridViewTextBoxColumn.HeaderText = "Schedule UTC";
             scheduleAtDataGridViewTextBoxColumn.Name = "scheduleAtDataGridViewTextBoxColumn";
             scheduleAtDataGridViewTextBoxColumn.ReadOnly = true;
@@ -830,7 +819,7 @@
             grpTraces.Controls.Add(txtTrace);
             grpTraces.Location = new Point(12, 500);
             grpTraces.Name = "grpTraces";
-            grpTraces.Size = new Size(1673, 400);
+            grpTraces.Size = new Size(1669, 400);
             grpTraces.TabIndex = 30;
             grpTraces.TabStop = false;
             grpTraces.Text = "Traces";
@@ -844,7 +833,6 @@
             Controls.Add(grpTraces);
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);
-            Controls.Add(btnStart);
             MainMenuStrip = menuStrip1;
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
@@ -876,7 +864,6 @@
         #endregion
 
         private TextBox txtTrace;
-        private Button btnStart;
         private Button btnCreateDistPolicy;
         private GroupBox grpDistributionPolicies;
         private Button btnDeleteDistPolicy;
