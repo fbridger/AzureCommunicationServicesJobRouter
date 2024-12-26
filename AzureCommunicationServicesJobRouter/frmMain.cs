@@ -208,6 +208,19 @@ namespace AzureCommunicationServicesJobRouter
                 _distributionPolicyBindingList.Remove(_distributionPolicyBindingList.Single(d => d.Id == policyId));
             }
         }
+
+        private async Task<DistributionPolicy> CreateDistributionPolicy(DistributionPolicy distributionPolicy)
+        {
+            distributionPolicy = await _routerAdminClient.CreateDistributionPolicyAsync(new CreateDistributionPolicyOptions(distributionPolicy.Id, distributionPolicy.OfferExpiresAfter.Value, distributionPolicy.Mode)
+            {
+                Name = distributionPolicy.Name
+            });
+
+            //To-do: Check if update
+            AddDistributionPolicyBinding(distributionPolicy);
+
+            return distributionPolicy;
+        }
         #endregion
 
         #region Queues
@@ -298,6 +311,19 @@ namespace AzureCommunicationServicesJobRouter
         private List<string> GetQueuesIds()
         {
             return _queueBindingList.Select(q => q.Id).ToList();
+        }
+
+        private async Task<RouterQueue> CreateQueue(RouterQueue routerQueue)
+        {
+            routerQueue = await _routerAdminClient.CreateQueueAsync(new CreateQueueOptions(routerQueue.Id, routerQueue.DistributionPolicyId)
+            {
+                Name = routerQueue.Name
+            });
+
+            //To-do: check if update
+            AddQueueBinding(routerQueue);
+
+            return routerQueue;
         }
         #endregion
 
@@ -397,6 +423,36 @@ namespace AzureCommunicationServicesJobRouter
 
             return channelsList;
         }
+
+        private async Task<RouterWorker> CreateWorker(RouterWorker routerWorker)
+        {
+            var createWorkerOptions = new CreateWorkerOptions(routerWorker.Id, routerWorker.Capacity.Value)
+            {
+                AvailableForOffers = routerWorker.AvailableForOffers.Value,
+                MaxConcurrentOffers = routerWorker.MaxConcurrentOffers,
+            };
+
+            foreach (var channel in routerWorker.Channels)
+            {
+                createWorkerOptions.Channels.Add(channel);
+            }
+
+            foreach (var label in routerWorker.Labels)
+            {
+                createWorkerOptions.Labels.Add(label);
+            }
+
+            foreach (var queue in routerWorker.Queues)
+            {
+                createWorkerOptions.Queues.Add(queue);
+            }
+
+            routerWorker = await _routerClient.CreateWorkerAsync(createWorkerOptions);
+
+            AddWorkerBinding(routerWorker);
+
+            return routerWorker;
+        }
         #endregion
 
         #region Jobs
@@ -482,6 +538,31 @@ namespace AzureCommunicationServicesJobRouter
 
                 _jobBindingList[jobBindingindex] = job.ToJobBinding();
             }
+        }
+
+        private async Task<RouterJob> CreateJob(RouterJob routerJob)
+        {
+            CreateJobOptions createJobOptions = new CreateJobOptions(routerJob.Id, routerJob.ChannelId, routerJob.QueueId)
+            {
+                Priority = routerJob.Priority,
+                MatchingMode = routerJob.MatchingMode,
+            };
+
+            foreach (var selector in routerJob.RequestedWorkerSelectors)
+            {
+                createJobOptions.RequestedWorkerSelectors.Add(selector);
+            }
+
+            foreach (var note in routerJob.Notes)
+            {
+                createJobOptions.Notes.Add(note);
+            }
+
+            routerJob = await _routerClient.CreateJobAsync(createJobOptions);
+
+            AddJobBinding(routerJob);
+
+            return routerJob;
         }
         #endregion
 
@@ -701,15 +782,7 @@ namespace AzureCommunicationServicesJobRouter
 
             if (frmCreateDistributionPolicy.ShowDialog() == DialogResult.OK)
             {
-                DistributionPolicy distributionPolicy = frmCreateDistributionPolicy.Policy;
-
-                distributionPolicy = await _routerAdminClient.CreateDistributionPolicyAsync(new CreateDistributionPolicyOptions(distributionPolicy.Id, distributionPolicy.OfferExpiresAfter.Value, distributionPolicy.Mode)
-                {
-                    Name = distributionPolicy.Name
-                });
-
-                //To-do: Check if update
-                AddDistributionPolicyBinding(distributionPolicy);
+                await CreateDistributionPolicy(frmCreateDistributionPolicy.Policy);
             }
         }
 
@@ -771,15 +844,7 @@ namespace AzureCommunicationServicesJobRouter
 
             if (frmCreateQueue.ShowDialog() == DialogResult.OK)
             {
-                RouterQueue routerQueue = frmCreateQueue.Queue;
-
-                routerQueue = await _routerAdminClient.CreateQueueAsync(new CreateQueueOptions(routerQueue.Id, routerQueue.DistributionPolicyId)
-                {
-                    Name = routerQueue.Name
-                });
-
-                //To-do: check if update
-                AddQueueBinding(routerQueue);
+                await CreateQueue(frmCreateQueue.Queue);
             }
         }
 
@@ -841,32 +906,7 @@ namespace AzureCommunicationServicesJobRouter
 
             if (frmCreateWorker.ShowDialog() == DialogResult.OK)
             {
-                RouterWorker routerWorker = frmCreateWorker.Worker;
-
-                var createWorkerOptions = new CreateWorkerOptions(routerWorker.Id, routerWorker.Capacity.Value)
-                {
-                    AvailableForOffers = routerWorker.AvailableForOffers.Value,
-                    MaxConcurrentOffers = routerWorker.MaxConcurrentOffers,
-                };
-
-                foreach (var channel in routerWorker.Channels)
-                {
-                    createWorkerOptions.Channels.Add(channel);
-                }
-
-                foreach (var label in routerWorker.Labels)
-                {
-                    createWorkerOptions.Labels.Add(label);
-                }
-
-                foreach (var queue in routerWorker.Queues)
-                {
-                    createWorkerOptions.Queues.Add(queue);
-                }
-
-                routerWorker = await _routerClient.CreateWorkerAsync(createWorkerOptions);
-
-                AddWorkerBinding(routerWorker);
+                await CreateWorker(frmCreateWorker.Worker);
             }
         }
 
@@ -1044,6 +1084,19 @@ namespace AzureCommunicationServicesJobRouter
         #endregion
 
         #region Jobs UI
+        private async void btnCreateJob_Click(object sender, EventArgs e)
+        {
+            List<string> channelsIdList = GetUniqueWorkersChannels().Select(c => c.ChannelId).ToList();
+            List<string> queuesId = GetQueuesIds();
+
+            frmUpsertJob frmAddJob = new frmUpsertJob(false, channelsIdList, queuesId);
+
+            if (frmAddJob.ShowDialog() == DialogResult.OK)
+            {
+                await CreateJob(frmAddJob.Job);
+            }
+        }
+
         private async void btnCompleteJob_Click(object sender, EventArgs e)
         {
             List<string> jobIds = GetSelectedDataGridViewIds(dgJobs);
@@ -1128,39 +1181,6 @@ namespace AzureCommunicationServicesJobRouter
                         }
                     }
                 }
-            }
-        }
-
-        private async void btnCreateJob_Click(object sender, EventArgs e)
-        {
-            List<string> channelsIdList = GetUniqueWorkersChannels().Select(c => c.ChannelId).ToList();
-            List<string> queuesId = GetQueuesIds();
-
-            frmUpsertJob frmAddJob = new frmUpsertJob(false, channelsIdList, queuesId);
-
-            if (frmAddJob.ShowDialog() == DialogResult.OK)
-            {
-                RouterJob routerJob = frmAddJob.Job;
-
-                CreateJobOptions createJobOptions = new CreateJobOptions(routerJob.Id, routerJob.ChannelId, routerJob.QueueId)
-                {
-                    Priority = routerJob.Priority,
-                    MatchingMode = routerJob.MatchingMode,
-                };
-
-                foreach (var selector in routerJob.RequestedWorkerSelectors)
-                {
-                    createJobOptions.RequestedWorkerSelectors.Add(selector);
-                }
-
-                foreach (var note in routerJob.Notes)
-                {
-                    createJobOptions.Notes.Add(note);
-                }
-
-                routerJob = await _routerClient.CreateJobAsync(createJobOptions);
-
-                AddJobBinding(routerJob);
             }
         }
 
@@ -1267,6 +1287,28 @@ namespace AzureCommunicationServicesJobRouter
             frmLegend frmLegend = new frmLegend();
 
             frmLegend.Show();
+        }
+
+        private async void createTestingDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show($"This will be creating a distribution policy, queue, worker and a job. Are you sure you want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                string uniqueId = Helper.GetUniqueId();
+
+                //Create Distribution Policy
+                DistributionPolicy distributionPolicy = await CreateDistributionPolicy(Helper.GetTestingDistributionPolicy(uniqueId));
+
+                //Create queue
+                RouterQueue routerQueue = await CreateQueue(Helper.GetTestingQueue(distributionPolicy, uniqueId));
+
+                //Create worker
+                RouterWorker routerWorker = await CreateWorker(Helper.GetTestingWorker(routerQueue, uniqueId));
+
+                //Create job
+                RouterJob routerJob = await CreateJob(Helper.GetTestingJob(routerWorker, uniqueId));
+            }
         }
         #endregion
     }

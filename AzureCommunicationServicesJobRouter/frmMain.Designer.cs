@@ -106,6 +106,7 @@
             optionsToolStripMenuItem = new ToolStripMenuItem();
             refreshToolStripMenuItem = new ToolStripMenuItem();
             legendToolStripMenuItem = new ToolStripMenuItem();
+            createTestingDataToolStripMenuItem = new ToolStripMenuItem();
             grpTraces = new GroupBox();
             grpDistributionPolicies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgDistributionPolicies).BeginInit();
@@ -793,7 +794,7 @@
             // 
             // optionsToolStripMenuItem
             // 
-            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { refreshToolStripMenuItem, legendToolStripMenuItem });
+            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { refreshToolStripMenuItem, legendToolStripMenuItem, createTestingDataToolStripMenuItem });
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             optionsToolStripMenuItem.Size = new Size(61, 20);
             optionsToolStripMenuItem.Text = "Options";
@@ -802,7 +803,7 @@
             // 
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
             refreshToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.R;
-            refreshToolStripMenuItem.Size = new Size(154, 22);
+            refreshToolStripMenuItem.Size = new Size(215, 22);
             refreshToolStripMenuItem.Text = "&Refresh";
             refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
@@ -810,9 +811,17 @@
             // 
             legendToolStripMenuItem.Name = "legendToolStripMenuItem";
             legendToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.L;
-            legendToolStripMenuItem.Size = new Size(154, 22);
+            legendToolStripMenuItem.Size = new Size(215, 22);
             legendToolStripMenuItem.Text = "&Legend";
             legendToolStripMenuItem.Click += legendToolStripMenuItem_Click;
+            // 
+            // createTestingDataToolStripMenuItem
+            // 
+            createTestingDataToolStripMenuItem.Name = "createTestingDataToolStripMenuItem";
+            createTestingDataToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.T;
+            createTestingDataToolStripMenuItem.Size = new Size(215, 22);
+            createTestingDataToolStripMenuItem.Text = "Create &Testing Data";
+            createTestingDataToolStripMenuItem.Click += createTestingDataToolStripMenuItem_Click;
             // 
             // grpTraces
             // 
@@ -940,5 +949,6 @@
         private DataGridViewTextBoxColumn matchingModeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn requestedWorkerSelectorDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
+        private ToolStripMenuItem createTestingDataToolStripMenuItem;
     }
 }
