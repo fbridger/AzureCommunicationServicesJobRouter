@@ -23,6 +23,7 @@ After downloading the project and building it using Visual Studio, you need to p
 + The tool includes several shortcuts for your convenience. For example:
     + You can click on `Options` and then `Refresh` (`CTRL + R`) to manually refresh the lists.
     + You can click on `Options` and then `Legend` (`CTRL + L`) to display the legend window.
+    + You can click on `Options` and then `Create Testing Data` (`CTRL + T`) to create a testing Distribution Policy, Queue, Worker, and Job.
 + Some features, such as `Job Matching` Mode and `Classification Policies`, are currently missing but will be added later. However, this will not affect the tool's usability, as these features are optional.
 
 
@@ -36,6 +37,7 @@ This tool will help you test the Azure Communication Services Job Router by prov
 + The `JobRouterEventParser` project contains a parser for most of the Job Router events (remaining events will be added later), which can be useful if you need a parser.
 + The `ServiceBusReceiver` project is a Service Bus consumer that you can use as a starting point for any other project or service where you need to consume Service Bus events.
 + It helps you test moving components between different states, and provides descriptive error messages if you try to move between unsupported states.
++ You can easily create testing data by simply clicking on `Options` and then `Create Testing Data`.
 
 
 ## Screenshots
