@@ -104,6 +104,64 @@ namespace AzureCommunicationServicesJobRouter
         {
             return new KeyValuePair<string, RouterValue>(name, Helper.GetRouterValue(name, value, valueType));
         }
+
+        public static DistributionPolicy GetTestingDistributionPolicy(string uniqueId)
+        {
+            return new DistributionPolicy($"testDistPolicy-{uniqueId}")
+            {
+                Name = $"Test Distribution Policy {uniqueId}",
+                OfferExpiresAfter = TimeSpan.FromSeconds(60),
+                Mode = new LongestIdleMode(),
+            };
+        }
+
+        public static RouterQueue GetTestingQueue(DistributionPolicy distPolicy, string uniqueId)
+        {
+            return new RouterQueue("testQueue-" + uniqueId)
+            {
+                Name = "Test Queue " + uniqueId,
+                DistributionPolicyId = distPolicy.Id,
+            };
+        }
+
+        public static RouterWorker GetTestingWorker(RouterQueue queue, string uniqueId)
+        {
+            RouterWorker routerWorker = new RouterWorker($"testWorker-{uniqueId}")
+            {
+                AvailableForOffers = true,
+                Capacity = 1,
+                MaxConcurrentOffers = 1,
+            };
+
+            routerWorker.Queues.Add(queue.Id);
+
+            foreach (var label in GetWorkerDefaultLabels())
+            {
+                routerWorker.Labels.Add(label);
+            }
+
+            routerWorker.Channels.Add(new RouterChannel($"testChannel-{uniqueId}", 1));
+
+            return routerWorker;
+        }
+
+        public static RouterJob GetTestingJob(RouterWorker worker, string uniqueId)
+        {
+
+            RouterJob routerJob = new RouterJob($"testJob-{uniqueId}")
+            {
+                ChannelId = worker.Channels.First().ChannelId,
+                QueueId = worker.Queues.First(),
+                Priority = 1,
+            };
+
+            foreach (var selector in GetJobDefaultRequestedWorkerSelectors())
+            {
+                routerJob.RequestedWorkerSelectors.Add(selector);
+            }
+
+            return routerJob;
+        }
     }
 
 }
