@@ -1310,6 +1310,29 @@ namespace AzureCommunicationServicesJobRouter
                 RouterJob routerJob = await CreateJob(Helper.GetTestingJob(routerWorker, uniqueId));
             }
         }
+
         #endregion
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = txtFilter.Text.ToLower();
+
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                dgJobs.DataSource = _jobBindingSource;
+            }
+            else
+            {
+                var filteredJobs = _jobBindingList.Where(job =>
+                    (job.Id != null && job.Id.ToLower().Contains(filterText)) ||
+                    (job.Status != null && job.Status.ToLower().Contains(filterText)) ||
+                    (job.QueueId != null && job.QueueId.ToLower().Contains(filterText)) ||
+                    (job.ChannelId != null && job.ChannelId.ToLower().Contains(filterText)) ||
+                    (job.Notes != null && job.Notes.ToLower().Contains(filterText))
+                ).ToList();
+
+                dgJobs.DataSource = new BindingList<JobBinding>(filteredJobs);
+            }
+        }
     }
 }
