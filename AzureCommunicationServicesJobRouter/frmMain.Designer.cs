@@ -50,6 +50,8 @@
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             grpWorkers = new GroupBox();
+            txtWorkerFilter = new TextBox();
+            label2 = new Label();
             btnUpdateWorker = new Button();
             btnDeregisterWorker = new Button();
             btnRespondToOffer = new Button();
@@ -314,6 +316,8 @@
             // 
             // grpWorkers
             // 
+            grpWorkers.Controls.Add(label2);
+            grpWorkers.Controls.Add(txtWorkerFilter);
             grpWorkers.Controls.Add(btnUpdateWorker);
             grpWorkers.Controls.Add(btnDeregisterWorker);
             grpWorkers.Controls.Add(btnRespondToOffer);
@@ -328,6 +332,24 @@
             grpWorkers.TabIndex = 0;
             grpWorkers.TabStop = false;
             grpWorkers.Text = "Workers";
+            // 
+            // txtWorkerFilter
+            // 
+            txtWorkerFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtWorkerFilter.Location = new Point(57, 22);
+            txtWorkerFilter.Name = "txtWorkerFilter";
+            txtWorkerFilter.Size = new Size(1069, 23);
+            txtWorkerFilter.TabIndex = 8;
+            txtWorkerFilter.TextChanged += txtWorkerFilter_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 25);
+            label2.Name = "label2";
+            label2.Size = new Size(45, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Search:";
             // 
             // btnUpdateWorker
             // 
@@ -393,10 +415,10 @@
             dgWorkers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgWorkers.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn2, stateDataGridViewTextBoxColumn, offersDataGridViewTextBoxColumn, assignedJobsDataGridViewTextBoxColumn, capacityDataGridViewTextBoxColumn, maxConcurrentOffersDataGridViewTextBoxColumn1, queuesDataGridViewTextBoxColumn, channelsDataGridViewTextBoxColumn, labelsDataGridViewTextBoxColumn1, loadRatioDataGridViewTextBoxColumn, Tags, dataGridViewTextBoxColumn2 });
             dgWorkers.DataSource = workerBindingBindingSource;
-            dgWorkers.Location = new Point(6, 22);
+            dgWorkers.Location = new Point(6, 59);
             dgWorkers.Name = "dgWorkers";
             dgWorkers.ReadOnly = true;
-            dgWorkers.Size = new Size(1120, 491);
+            dgWorkers.Size = new Size(1120, 454);
             dgWorkers.TabIndex = 0;
             dgWorkers.DataBindingComplete += dgWorkers_DataBindingComplete;
             // 
@@ -946,6 +968,7 @@
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             grpWorkers.ResumeLayout(false);
+            grpWorkers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgWorkers).EndInit();
             ((System.ComponentModel.ISupportInitialize)workerBindingBindingSource).EndInit();
             tabPage3.ResumeLayout(false);
@@ -1051,5 +1074,7 @@
         private Button btnDeleteQueue;
         private TextBox txtFilter;
         private Label label1;
+        private TextBox txtWorkerFilter;
+        private Label label2;
     }
 }

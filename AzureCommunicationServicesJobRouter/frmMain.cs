@@ -1102,6 +1102,29 @@ namespace AzureCommunicationServicesJobRouter
                 }
             }
         }
+
+        private void txtWorkerFilter_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = txtWorkerFilter.Text.ToLower();
+
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                dgWorkers.DataSource = _workerBindingSource;
+            }
+            else
+            {
+                var filteredWorkers = _workerBindingList.Where(worker =>
+                    (worker.Id != null && worker.Id.ToLower().Contains(filterText)) ||
+                    (worker.State != null && worker.State.ToLower().Contains(filterText)) ||
+                    (worker.Queues != null && worker.Queues.ToLower().Contains(filterText)) ||
+                    (worker.Channels != null && worker.Channels.ToLower().Contains(filterText)) ||
+                    (worker.Labels != null && worker.Labels.ToLower().Contains(filterText)) ||
+                    (worker.Tags != null && worker.Tags.ToLower().Contains(filterText))
+                ).ToList();
+
+                dgWorkers.DataSource = new BindingList<WorkerBinding>(filteredWorkers);
+            }
+        }
         #endregion
 
         #region Jobs UI
