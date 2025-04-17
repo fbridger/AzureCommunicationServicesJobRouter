@@ -536,7 +536,15 @@ namespace AzureCommunicationServicesJobRouter
             {
                 int jobBindingindex = GetJobBindingIndex(job.Id);
 
-                _jobBindingList[jobBindingindex] = job.ToJobBinding();
+                // New Job?
+                if (jobBindingindex < _jobBindingList.Count)
+                {
+                    _jobBindingList[jobBindingindex] = job.ToJobBinding();
+                }
+                else
+                {
+
+                }
             }
         }
 
@@ -650,10 +658,23 @@ namespace AzureCommunicationServicesJobRouter
             UpdateWorkerBinding(routerWorker);
         }
 
+        private bool IsJobInDataGrid(string jobId)
+        {
+            return _jobBindingList.Any(job => job.Id == jobId);
+        }
+
         private async void HandleServiceBusEvent_RouterJobUpdated(string jobId)
         {
             RouterJob routerJob = await _routerClient.GetJobAsync(jobId);
-            UpdateJobBinding(routerJob);
+            if (IsJobInDataGrid(jobId))
+            {
+                UpdateJobBinding(routerJob);
+            }
+            else
+            {
+                WriteTrace($"Job with ID {jobId} does not exist in the data grid.");
+                AddJobBinding(routerJob);
+            }
         }
         #endregion
 
