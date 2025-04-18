@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using ServiceBusReceiver;
 using System.ComponentModel;
+using System.Reflection;
 using System.Text;
 
 namespace AzureCommunicationServicesJobRouter
@@ -71,6 +72,7 @@ namespace AzureCommunicationServicesJobRouter
                .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                //.AddEnvironmentVariables()
+               .AddUserSecrets(Assembly.GetExecutingAssembly())
                .Build());
 
             Text += $" (v{Helper.GetApplicationVersion()})";
@@ -673,7 +675,7 @@ namespace AzureCommunicationServicesJobRouter
             else
             {
                 WriteTrace($"Job with ID {jobId} does not exist in the data grid.");
-                AddJobBinding(routerJob);
+                //AddJobBinding(routerJob);
             }
         }
         #endregion

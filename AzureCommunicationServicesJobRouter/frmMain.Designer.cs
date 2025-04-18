@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            var dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            var dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle4 = new DataGridViewCellStyle();
             txtTrace = new TextBox();
             btnCreateDistPolicy = new Button();
             grpDistributionPolicies = new GroupBox();
@@ -50,8 +50,8 @@
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             grpWorkers = new GroupBox();
-            txtWorkerFilter = new TextBox();
             label2 = new Label();
+            txtWorkerFilter = new TextBox();
             btnUpdateWorker = new Button();
             btnDeregisterWorker = new Button();
             btnRespondToOffer = new Button();
@@ -74,6 +74,7 @@
             btnDeleteWorker = new Button();
             tabPage3 = new TabPage();
             grpJobs = new GroupBox();
+            label1 = new Label();
             txtFilter = new TextBox();
             btnUpdateJob = new Button();
             btnCreateJob = new Button();
@@ -114,7 +115,7 @@
             refreshToolStripMenuItem = new ToolStripMenuItem();
             legendToolStripMenuItem = new ToolStripMenuItem();
             createTestingDataToolStripMenuItem = new ToolStripMenuItem();
-            label1 = new Label();
+            splitContainerMain = new SplitContainer();
             grpDistributionPolicies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgDistributionPolicies).BeginInit();
             ((System.ComponentModel.ISupportInitialize)distributionPolicyBindingBindingSource).BeginInit();
@@ -132,9 +133,12 @@
             grpQueues.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgQueues).BeginInit();
             ((System.ComponentModel.ISupportInitialize)queueBindingBindingSource).BeginInit();
-            tabPage4.SuspendLayout();
             grpTraces.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainerMain).BeginInit();
+            splitContainerMain.Panel1.SuspendLayout();
+            splitContainerMain.Panel2.SuspendLayout();
+            splitContainerMain.SuspendLayout();
             SuspendLayout();
             // 
             // txtTrace
@@ -144,13 +148,13 @@
             txtTrace.Multiline = true;
             txtTrace.Name = "txtTrace";
             txtTrace.ScrollBars = ScrollBars.Vertical;
-            txtTrace.Size = new Size(1134, 526);
+            txtTrace.Size = new Size(1148, 138);
             txtTrace.TabIndex = 0;
             // 
             // btnCreateDistPolicy
             // 
             btnCreateDistPolicy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateDistPolicy.Location = new Point(6, 519);
+            btnCreateDistPolicy.Location = new Point(6, 439);
             btnCreateDistPolicy.Name = "btnCreateDistPolicy";
             btnCreateDistPolicy.Size = new Size(110, 23);
             btnCreateDistPolicy.TabIndex = 1;
@@ -167,7 +171,7 @@
             grpDistributionPolicies.Dock = DockStyle.Fill;
             grpDistributionPolicies.Location = new Point(3, 3);
             grpDistributionPolicies.Name = "grpDistributionPolicies";
-            grpDistributionPolicies.Size = new Size(1140, 548);
+            grpDistributionPolicies.Size = new Size(1140, 468);
             grpDistributionPolicies.TabIndex = 0;
             grpDistributionPolicies.TabStop = false;
             grpDistributionPolicies.Text = "Distribution Policies";
@@ -175,7 +179,7 @@
             // btnUpdateDistPolicy
             // 
             btnUpdateDistPolicy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateDistPolicy.Location = new Point(122, 519);
+            btnUpdateDistPolicy.Location = new Point(122, 439);
             btnUpdateDistPolicy.Name = "btnUpdateDistPolicy";
             btnUpdateDistPolicy.Size = new Size(110, 23);
             btnUpdateDistPolicy.TabIndex = 2;
@@ -186,7 +190,7 @@
             // btnDeleteDistPolicy
             // 
             btnDeleteDistPolicy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeleteDistPolicy.Location = new Point(238, 519);
+            btnDeleteDistPolicy.Location = new Point(238, 439);
             btnDeleteDistPolicy.Name = "btnDeleteDistPolicy";
             btnDeleteDistPolicy.Size = new Size(110, 23);
             btnDeleteDistPolicy.TabIndex = 3;
@@ -206,7 +210,7 @@
             dgDistributionPolicies.Location = new Point(6, 22);
             dgDistributionPolicies.Name = "dgDistributionPolicies";
             dgDistributionPolicies.ReadOnly = true;
-            dgDistributionPolicies.Size = new Size(1128, 491);
+            dgDistributionPolicies.Size = new Size(1128, 411);
             dgDistributionPolicies.TabIndex = 0;
             dgDistributionPolicies.DataBindingComplete += dgJobs_DataBindingComplete;
             // 
@@ -286,10 +290,10 @@
             tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 24);
+            tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1154, 582);
+            tabControl1.Size = new Size(1154, 502);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -298,7 +302,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1146, 554);
+            tabPage1.Size = new Size(1146, 474);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Policies";
             tabPage1.UseVisualStyleBackColor = true;
@@ -333,15 +337,6 @@
             grpWorkers.TabStop = false;
             grpWorkers.Text = "Workers";
             // 
-            // txtWorkerFilter
-            // 
-            txtWorkerFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtWorkerFilter.Location = new Point(57, 22);
-            txtWorkerFilter.Name = "txtWorkerFilter";
-            txtWorkerFilter.Size = new Size(1069, 23);
-            txtWorkerFilter.TabIndex = 8;
-            txtWorkerFilter.TextChanged += txtWorkerFilter_TextChanged;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -350,6 +345,15 @@
             label2.Size = new Size(45, 15);
             label2.TabIndex = 9;
             label2.Text = "Search:";
+            // 
+            // txtWorkerFilter
+            // 
+            txtWorkerFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtWorkerFilter.Location = new Point(57, 22);
+            txtWorkerFilter.Name = "txtWorkerFilter";
+            txtWorkerFilter.Size = new Size(1069, 23);
+            txtWorkerFilter.TabIndex = 8;
+            txtWorkerFilter.TextChanged += txtWorkerFilter_TextChanged;
             // 
             // btnUpdateWorker
             // 
@@ -562,6 +566,15 @@
             grpJobs.TabStop = false;
             grpJobs.Text = "Jobs";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(6, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(45, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Search:";
+            // 
             // txtFilter
             // 
             txtFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -656,9 +669,9 @@
             // enqueueAtDataGridViewTextBoxColumn
             // 
             enqueueAtDataGridViewTextBoxColumn.DataPropertyName = "EnqueueAt";
-            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm";
-            dataGridViewCellStyle1.NullValue = null;
-            enqueueAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "yyyy-MM-dd HH:mm";
+            dataGridViewCellStyle3.NullValue = null;
+            enqueueAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             enqueueAtDataGridViewTextBoxColumn.HeaderText = "Enqueue UTC";
             enqueueAtDataGridViewTextBoxColumn.Name = "enqueueAtDataGridViewTextBoxColumn";
             enqueueAtDataGridViewTextBoxColumn.ReadOnly = true;
@@ -667,9 +680,9 @@
             // scheduleAtDataGridViewTextBoxColumn
             // 
             scheduleAtDataGridViewTextBoxColumn.DataPropertyName = "ScheduleAt";
-            dataGridViewCellStyle2.Format = "yyyy-MM-dd HH:mm";
-            dataGridViewCellStyle2.NullValue = null;
-            scheduleAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Format = "yyyy-MM-dd HH:mm";
+            dataGridViewCellStyle4.NullValue = null;
+            scheduleAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             scheduleAtDataGridViewTextBoxColumn.HeaderText = "Schedule UTC";
             scheduleAtDataGridViewTextBoxColumn.Name = "scheduleAtDataGridViewTextBoxColumn";
             scheduleAtDataGridViewTextBoxColumn.ReadOnly = true;
@@ -879,11 +892,10 @@
             // 
             // tabPage4
             // 
-            tabPage4.Controls.Add(grpTraces);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1146, 554);
+            tabPage4.Size = new Size(1146, 332);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Traces";
             tabPage4.UseVisualStyleBackColor = true;
@@ -892,9 +904,9 @@
             // 
             grpTraces.Controls.Add(txtTrace);
             grpTraces.Dock = DockStyle.Fill;
-            grpTraces.Location = new Point(3, 3);
+            grpTraces.Location = new Point(0, 0);
             grpTraces.Name = "grpTraces";
-            grpTraces.Size = new Size(1140, 548);
+            grpTraces.Size = new Size(1154, 160);
             grpTraces.TabIndex = 30;
             grpTraces.TabStop = false;
             grpTraces.Text = "Traces";
@@ -939,22 +951,31 @@
             createTestingDataToolStripMenuItem.Text = "Create &Testing Data";
             createTestingDataToolStripMenuItem.Click += createTestingDataToolStripMenuItem_Click;
             // 
-            // label1
+            // splitContainerMain
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(6, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(45, 15);
-            label1.TabIndex = 8;
-            label1.Text = "Search:";
+            splitContainerMain.Dock = DockStyle.Fill;
+            splitContainerMain.Location = new Point(0, 24);
+            splitContainerMain.Name = "splitContainerMain";
+            splitContainerMain.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainerMain.Panel1
+            // 
+            splitContainerMain.Panel1.Controls.Add(tabControl1);
+            // 
+            // splitContainerMain.Panel2
+            // 
+            splitContainerMain.Panel2.Controls.Add(grpTraces);
+            splitContainerMain.Size = new Size(1154, 666);
+            splitContainerMain.SplitterDistance = 502;
+            splitContainerMain.TabIndex = 31;
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(1154, 606);
-            Controls.Add(tabControl1);
+            ClientSize = new Size(1154, 690);
+            Controls.Add(splitContainerMain);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "frmMain";
@@ -980,11 +1001,14 @@
             grpQueues.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgQueues).EndInit();
             ((System.ComponentModel.ISupportInitialize)queueBindingBindingSource).EndInit();
-            tabPage4.ResumeLayout(false);
             grpTraces.ResumeLayout(false);
             grpTraces.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            splitContainerMain.Panel1.ResumeLayout(false);
+            splitContainerMain.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainerMain).EndInit();
+            splitContainerMain.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1076,5 +1100,6 @@
         private Label label1;
         private TextBox txtWorkerFilter;
         private Label label2;
+        private SplitContainer splitContainerMain;
     }
 }
