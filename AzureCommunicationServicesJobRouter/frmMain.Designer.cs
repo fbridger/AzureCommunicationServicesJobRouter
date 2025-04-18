@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            var dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            var dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             txtTrace = new TextBox();
             btnCreateDistPolicy = new Button();
             grpDistributionPolicies = new GroupBox();
@@ -75,7 +75,7 @@
             tabPage3 = new TabPage();
             grpJobs = new GroupBox();
             label1 = new Label();
-            txtFilter = new TextBox();
+            txtJobSearchBox = new TextBox();
             btnUpdateJob = new Button();
             btnCreateJob = new Button();
             btnCancelJob = new Button();
@@ -550,7 +550,7 @@
             // grpJobs
             // 
             grpJobs.Controls.Add(label1);
-            grpJobs.Controls.Add(txtFilter);
+            grpJobs.Controls.Add(txtJobSearchBox);
             grpJobs.Controls.Add(btnUpdateJob);
             grpJobs.Controls.Add(btnCreateJob);
             grpJobs.Controls.Add(btnCancelJob);
@@ -577,12 +577,12 @@
             // 
             // txtFilter
             // 
-            txtFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtFilter.Location = new Point(57, 22);
-            txtFilter.Name = "txtFilter";
-            txtFilter.Size = new Size(1069, 23);
-            txtFilter.TabIndex = 7;
-            txtFilter.TextChanged += txtFilter_TextChanged;
+            txtJobSearchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtJobSearchBox.Location = new Point(57, 22);
+            txtJobSearchBox.Name = "txtFilter";
+            txtJobSearchBox.Size = new Size(1069, 23);
+            txtJobSearchBox.TabIndex = 7;
+            txtJobSearchBox.TextChanged += txtFilter_TextChanged;
             // 
             // btnUpdateJob
             // 
@@ -669,9 +669,9 @@
             // enqueueAtDataGridViewTextBoxColumn
             // 
             enqueueAtDataGridViewTextBoxColumn.DataPropertyName = "EnqueueAt";
-            dataGridViewCellStyle3.Format = "yyyy-MM-dd HH:mm";
-            dataGridViewCellStyle3.NullValue = null;
-            enqueueAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm";
+            dataGridViewCellStyle1.NullValue = null;
+            enqueueAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             enqueueAtDataGridViewTextBoxColumn.HeaderText = "Enqueue UTC";
             enqueueAtDataGridViewTextBoxColumn.Name = "enqueueAtDataGridViewTextBoxColumn";
             enqueueAtDataGridViewTextBoxColumn.ReadOnly = true;
@@ -680,9 +680,9 @@
             // scheduleAtDataGridViewTextBoxColumn
             // 
             scheduleAtDataGridViewTextBoxColumn.DataPropertyName = "ScheduleAt";
-            dataGridViewCellStyle4.Format = "yyyy-MM-dd HH:mm";
-            dataGridViewCellStyle4.NullValue = null;
-            scheduleAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "yyyy-MM-dd HH:mm";
+            dataGridViewCellStyle2.NullValue = null;
+            scheduleAtDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             scheduleAtDataGridViewTextBoxColumn.HeaderText = "Schedule UTC";
             scheduleAtDataGridViewTextBoxColumn.Name = "scheduleAtDataGridViewTextBoxColumn";
             scheduleAtDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1096,7 +1096,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private Button btnCreateQueue;
         private Button btnDeleteQueue;
-        private TextBox txtFilter;
+        private TextBox txtJobSearchBox;
         private Label label1;
         private TextBox txtWorkerFilter;
         private Label label2;

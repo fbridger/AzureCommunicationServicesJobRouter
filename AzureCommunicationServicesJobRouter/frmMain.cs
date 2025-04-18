@@ -538,15 +538,7 @@ namespace AzureCommunicationServicesJobRouter
             {
                 int jobBindingindex = GetJobBindingIndex(job.Id);
 
-                // New Job?
-                if (jobBindingindex < _jobBindingList.Count)
-                {
-                    _jobBindingList[jobBindingindex] = job.ToJobBinding();
-                }
-                else
-                {
-
-                }
+                _jobBindingList[jobBindingindex] = job.ToJobBinding();
             }
         }
 
@@ -674,8 +666,7 @@ namespace AzureCommunicationServicesJobRouter
             }
             else
             {
-                WriteTrace($"Job with ID {jobId} does not exist in the data grid.");
-                //AddJobBinding(routerJob);
+                Console.WriteLine($"Job with ID {jobId} does not exist in the data grid.");
             }
         }
         #endregion
@@ -1361,7 +1352,7 @@ namespace AzureCommunicationServicesJobRouter
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
-            string filterText = txtFilter.Text.ToLower();
+            string filterText = txtJobSearchBox.Text.ToLower();
 
             if (string.IsNullOrWhiteSpace(filterText))
             {
