@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle2 = new DataGridViewCellStyle();
             txtTrace = new TextBox();
             btnCreateDistPolicy = new Button();
             grpDistributionPolicies = new GroupBox();
@@ -108,7 +108,6 @@
             queueBindingBindingSource = new BindingSource(components);
             btnCreateQueue = new Button();
             btnDeleteQueue = new Button();
-            tabPage4 = new TabPage();
             grpTraces = new GroupBox();
             menuStrip1 = new MenuStrip();
             optionsToolStripMenuItem = new ToolStripMenuItem();
@@ -288,7 +287,6 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage5);
-            tabControl1.Controls.Add(tabPage4);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
@@ -313,7 +311,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1146, 554);
+            tabPage2.Size = new Size(1146, 474);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Workers";
             tabPage2.UseVisualStyleBackColor = true;
@@ -332,7 +330,7 @@
             grpWorkers.Dock = DockStyle.Fill;
             grpWorkers.Location = new Point(3, 3);
             grpWorkers.Name = "grpWorkers";
-            grpWorkers.Size = new Size(1140, 548);
+            grpWorkers.Size = new Size(1140, 468);
             grpWorkers.TabIndex = 0;
             grpWorkers.TabStop = false;
             grpWorkers.Text = "Workers";
@@ -358,7 +356,7 @@
             // btnUpdateWorker
             // 
             btnUpdateWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateWorker.Location = new Point(122, 519);
+            btnUpdateWorker.Location = new Point(122, 439);
             btnUpdateWorker.Name = "btnUpdateWorker";
             btnUpdateWorker.Size = new Size(110, 23);
             btnUpdateWorker.TabIndex = 2;
@@ -369,7 +367,7 @@
             // btnDeregisterWorker
             // 
             btnDeregisterWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeregisterWorker.Location = new Point(586, 519);
+            btnDeregisterWorker.Location = new Point(586, 439);
             btnDeregisterWorker.Name = "btnDeregisterWorker";
             btnDeregisterWorker.Size = new Size(110, 23);
             btnDeregisterWorker.TabIndex = 6;
@@ -380,7 +378,7 @@
             // btnRespondToOffer
             // 
             btnRespondToOffer.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRespondToOffer.Location = new Point(354, 519);
+            btnRespondToOffer.Location = new Point(354, 439);
             btnRespondToOffer.Name = "btnRespondToOffer";
             btnRespondToOffer.Size = new Size(110, 23);
             btnRespondToOffer.TabIndex = 4;
@@ -391,7 +389,7 @@
             // btnRegisterWorker
             // 
             btnRegisterWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRegisterWorker.Location = new Point(470, 519);
+            btnRegisterWorker.Location = new Point(470, 439);
             btnRegisterWorker.Name = "btnRegisterWorker";
             btnRegisterWorker.Size = new Size(110, 23);
             btnRegisterWorker.TabIndex = 5;
@@ -402,7 +400,7 @@
             // btnCreateWorker
             // 
             btnCreateWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateWorker.Location = new Point(6, 519);
+            btnCreateWorker.Location = new Point(6, 439);
             btnCreateWorker.Name = "btnCreateWorker";
             btnCreateWorker.Size = new Size(110, 23);
             btnCreateWorker.TabIndex = 1;
@@ -422,7 +420,7 @@
             dgWorkers.Location = new Point(6, 59);
             dgWorkers.Name = "dgWorkers";
             dgWorkers.ReadOnly = true;
-            dgWorkers.Size = new Size(1120, 454);
+            dgWorkers.Size = new Size(1120, 374);
             dgWorkers.TabIndex = 0;
             dgWorkers.DataBindingComplete += dgWorkers_DataBindingComplete;
             // 
@@ -528,7 +526,7 @@
             // btnDeleteWorker
             // 
             btnDeleteWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeleteWorker.Location = new Point(238, 519);
+            btnDeleteWorker.Location = new Point(238, 439);
             btnDeleteWorker.Name = "btnDeleteWorker";
             btnDeleteWorker.Size = new Size(110, 23);
             btnDeleteWorker.TabIndex = 3;
@@ -542,7 +540,7 @@
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1146, 554);
+            tabPage3.Size = new Size(1146, 474);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Jobs";
             tabPage3.UseVisualStyleBackColor = true;
@@ -561,7 +559,7 @@
             grpJobs.Dock = DockStyle.Fill;
             grpJobs.Location = new Point(3, 3);
             grpJobs.Name = "grpJobs";
-            grpJobs.Size = new Size(1140, 548);
+            grpJobs.Size = new Size(1140, 468);
             grpJobs.TabIndex = 2;
             grpJobs.TabStop = false;
             grpJobs.Text = "Jobs";
@@ -575,11 +573,11 @@
             label1.TabIndex = 8;
             label1.Text = "Search:";
             // 
-            // txtFilter
+            // txtJobSearchBox
             // 
             txtJobSearchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtJobSearchBox.Location = new Point(57, 22);
-            txtJobSearchBox.Name = "txtFilter";
+            txtJobSearchBox.Name = "txtJobSearchBox";
             txtJobSearchBox.Size = new Size(1069, 23);
             txtJobSearchBox.TabIndex = 7;
             txtJobSearchBox.TextChanged += txtFilter_TextChanged;
@@ -587,7 +585,7 @@
             // btnUpdateJob
             // 
             btnUpdateJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateJob.Location = new Point(122, 519);
+            btnUpdateJob.Location = new Point(122, 439);
             btnUpdateJob.Name = "btnUpdateJob";
             btnUpdateJob.Size = new Size(110, 23);
             btnUpdateJob.TabIndex = 2;
@@ -598,7 +596,7 @@
             // btnCreateJob
             // 
             btnCreateJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateJob.Location = new Point(6, 519);
+            btnCreateJob.Location = new Point(6, 439);
             btnCreateJob.Name = "btnCreateJob";
             btnCreateJob.Size = new Size(110, 23);
             btnCreateJob.TabIndex = 1;
@@ -609,7 +607,7 @@
             // btnCancelJob
             // 
             btnCancelJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCancelJob.Location = new Point(354, 519);
+            btnCancelJob.Location = new Point(354, 439);
             btnCancelJob.Name = "btnCancelJob";
             btnCancelJob.Size = new Size(110, 23);
             btnCancelJob.TabIndex = 4;
@@ -630,7 +628,7 @@
             dgJobs.Location = new Point(6, 59);
             dgJobs.Name = "dgJobs";
             dgJobs.ReadOnly = true;
-            dgJobs.Size = new Size(1120, 454);
+            dgJobs.Size = new Size(1120, 374);
             dgJobs.TabIndex = 0;
             dgJobs.DataBindingComplete += dgJobs_DataBindingComplete;
             // 
@@ -743,7 +741,7 @@
             // btnDeleteJob
             // 
             btnDeleteJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeleteJob.Location = new Point(238, 519);
+            btnDeleteJob.Location = new Point(238, 439);
             btnDeleteJob.Name = "btnDeleteJob";
             btnDeleteJob.Size = new Size(110, 23);
             btnDeleteJob.TabIndex = 3;
@@ -754,7 +752,7 @@
             // btnCloseJob
             // 
             btnCloseJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCloseJob.Location = new Point(586, 519);
+            btnCloseJob.Location = new Point(586, 439);
             btnCloseJob.Name = "btnCloseJob";
             btnCloseJob.Size = new Size(110, 23);
             btnCloseJob.TabIndex = 6;
@@ -765,7 +763,7 @@
             // btnCompleteJob
             // 
             btnCompleteJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCompleteJob.Location = new Point(470, 519);
+            btnCompleteJob.Location = new Point(470, 439);
             btnCompleteJob.Name = "btnCompleteJob";
             btnCompleteJob.Size = new Size(110, 23);
             btnCompleteJob.TabIndex = 5;
@@ -779,7 +777,7 @@
             tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(1146, 554);
+            tabPage5.Size = new Size(1146, 474);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Queues";
             tabPage5.UseVisualStyleBackColor = true;
@@ -793,7 +791,7 @@
             grpQueues.Dock = DockStyle.Fill;
             grpQueues.Location = new Point(3, 3);
             grpQueues.Name = "grpQueues";
-            grpQueues.Size = new Size(1140, 548);
+            grpQueues.Size = new Size(1140, 468);
             grpQueues.TabIndex = 2;
             grpQueues.TabStop = false;
             grpQueues.Text = "Queues";
@@ -801,7 +799,7 @@
             // btnUpdateQueue
             // 
             btnUpdateQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateQueue.Location = new Point(122, 519);
+            btnUpdateQueue.Location = new Point(122, 439);
             btnUpdateQueue.Name = "btnUpdateQueue";
             btnUpdateQueue.Size = new Size(110, 23);
             btnUpdateQueue.TabIndex = 2;
@@ -821,7 +819,7 @@
             dgQueues.Location = new Point(6, 22);
             dgQueues.Name = "dgQueues";
             dgQueues.ReadOnly = true;
-            dgQueues.Size = new Size(1128, 491);
+            dgQueues.Size = new Size(1128, 411);
             dgQueues.TabIndex = 0;
             dgQueues.Click += btnCreateQueue_Click;
             // 
@@ -872,7 +870,7 @@
             // btnCreateQueue
             // 
             btnCreateQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateQueue.Location = new Point(6, 519);
+            btnCreateQueue.Location = new Point(6, 439);
             btnCreateQueue.Name = "btnCreateQueue";
             btnCreateQueue.Size = new Size(110, 23);
             btnCreateQueue.TabIndex = 1;
@@ -882,23 +880,13 @@
             // btnDeleteQueue
             // 
             btnDeleteQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeleteQueue.Location = new Point(238, 519);
+            btnDeleteQueue.Location = new Point(238, 439);
             btnDeleteQueue.Name = "btnDeleteQueue";
             btnDeleteQueue.Size = new Size(110, 23);
             btnDeleteQueue.TabIndex = 3;
             btnDeleteQueue.Text = "Delete";
             btnDeleteQueue.UseVisualStyleBackColor = true;
             btnDeleteQueue.Click += btnDeleteQueue_Click;
-            // 
-            // tabPage4
-            // 
-            tabPage4.Location = new Point(4, 24);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1146, 332);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Traces";
-            tabPage4.UseVisualStyleBackColor = true;
             // 
             // grpTraces
             // 
@@ -1084,7 +1072,6 @@
         private Button btnDeleteJob;
         private Button btnCloseJob;
         private Button btnCompleteJob;
-        private TabPage tabPage4;
         private TabPage tabPage5;
         private GroupBox grpQueues;
         private Button btnUpdateQueue;
