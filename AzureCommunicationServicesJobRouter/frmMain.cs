@@ -397,6 +397,11 @@ namespace AzureCommunicationServicesJobRouter
             return i;
         }
 
+        private bool IsWorkerInDataGrid(string workerId)
+        {
+            return _workerBindingList.Any(worker => worker.Id == workerId);
+        }
+
         private void UpdateWorkerBinding(RouterWorker worker)
         {
             if (dgWorkers.InvokeRequired)
@@ -525,6 +530,11 @@ namespace AzureCommunicationServicesJobRouter
             return i;
         }
 
+        private bool IsJobInDataGrid(string jobId)
+        {
+            return _jobBindingList.Any(job => job.Id == jobId);
+        }
+
         private void UpdateJobBinding(RouterJob job)
         {
             if (dgJobs.InvokeRequired)
@@ -647,14 +657,17 @@ namespace AzureCommunicationServicesJobRouter
 
         private async void HandleServiceBusEvent_RouterWorkerUpdated(string workerId)
         {
-
             RouterWorker routerWorker = await _routerClient.GetWorkerAsync(workerId);
-            UpdateWorkerBinding(routerWorker);
-        }
 
-        private bool IsJobInDataGrid(string jobId)
-        {
-            return _jobBindingList.Any(job => job.Id == jobId);
+            if (IsWorkerInDataGrid(workerId))
+            {
+                UpdateWorkerBinding(routerWorker);
+            }
+            else
+            {
+                Console.WriteLine($"Worker with ID {workerId} does not exist in the data grid. Adding it to the list");
+                AddWorkerBinding(routerWorker);
+            }
         }
 
         private async void HandleServiceBusEvent_RouterJobUpdated(string jobId)
@@ -666,7 +679,8 @@ namespace AzureCommunicationServicesJobRouter
             }
             else
             {
-                Console.WriteLine($"Job with ID {jobId} does not exist in the data grid.");
+                Console.WriteLine($"Job with ID {jobId} does not exist in the data grid. Adding it to the list");
+                AddJobBinding(routerJob);
             }
         }
         #endregion
@@ -1096,9 +1110,9 @@ namespace AzureCommunicationServicesJobRouter
             }
         }
 
-        private void txtWorkerFilter_TextChanged(object sender, EventArgs e)
+        private void txtWorkersSearchBox_TextChanged(object sender, EventArgs e)
         {
-            string filterText = txtWorkerFilter.Text.ToLower();
+            string filterText = txtWorkersSearchBox.Text.ToLower();
 
             if (string.IsNullOrWhiteSpace(filterText))
             {
@@ -1311,6 +1325,28 @@ namespace AzureCommunicationServicesJobRouter
                 }
             }
         }
+
+        private void txtJobsSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = txtJobsSearchBox.Text.ToLower();
+
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                dgJobs.DataSource = _jobBindingSource;
+            }
+            else
+            {
+                var filteredJobs = _jobBindingList.Where(job =>
+                    (job.Id != null && job.Id.ToLower().Contains(filterText)) ||
+                    (job.Status != null && job.Status.ToLower().Contains(filterText)) ||
+                    (job.QueueId != null && job.QueueId.ToLower().Contains(filterText)) ||
+                    (job.ChannelId != null && job.ChannelId.ToLower().Contains(filterText)) ||
+                    (job.Notes != null && job.Notes.ToLower().Contains(filterText))
+                ).ToList();
+
+                dgJobs.DataSource = new BindingList<JobBinding>(filteredJobs);
+            }
+        }
         #endregion
 
         #region Menu strip
@@ -1349,27 +1385,5 @@ namespace AzureCommunicationServicesJobRouter
         }
 
         #endregion
-
-        private void txtFilter_TextChanged(object sender, EventArgs e)
-        {
-            string filterText = txtJobSearchBox.Text.ToLower();
-
-            if (string.IsNullOrWhiteSpace(filterText))
-            {
-                dgJobs.DataSource = _jobBindingSource;
-            }
-            else
-            {
-                var filteredJobs = _jobBindingList.Where(job =>
-                    (job.Id != null && job.Id.ToLower().Contains(filterText)) ||
-                    (job.Status != null && job.Status.ToLower().Contains(filterText)) ||
-                    (job.QueueId != null && job.QueueId.ToLower().Contains(filterText)) ||
-                    (job.ChannelId != null && job.ChannelId.ToLower().Contains(filterText)) ||
-                    (job.Notes != null && job.Notes.ToLower().Contains(filterText))
-                ).ToList();
-
-                dgJobs.DataSource = new BindingList<JobBinding>(filteredJobs);
-            }
-        }
     }
 }

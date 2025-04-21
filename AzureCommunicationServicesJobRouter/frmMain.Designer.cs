@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            var dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            var dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             txtTrace = new TextBox();
             btnCreateDistPolicy = new Button();
             grpDistributionPolicies = new GroupBox();
@@ -48,10 +48,22 @@
             distributionPolicyBindingBindingSource = new BindingSource(components);
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            tabPage5 = new TabPage();
+            grpQueues = new GroupBox();
+            btnUpdateQueue = new Button();
+            dgQueues = new DataGridView();
+            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            distributionPolicyIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            labelsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            queueBindingBindingSource = new BindingSource(components);
+            btnCreateQueue = new Button();
+            btnDeleteQueue = new Button();
             tabPage2 = new TabPage();
             grpWorkers = new GroupBox();
             label2 = new Label();
-            txtWorkerFilter = new TextBox();
+            txtWorkersSearchBox = new TextBox();
             btnUpdateWorker = new Button();
             btnDeregisterWorker = new Button();
             btnRespondToOffer = new Button();
@@ -75,7 +87,7 @@
             tabPage3 = new TabPage();
             grpJobs = new GroupBox();
             label1 = new Label();
-            txtJobSearchBox = new TextBox();
+            txtJobsSearchBox = new TextBox();
             btnUpdateJob = new Button();
             btnCreateJob = new Button();
             btnCancelJob = new Button();
@@ -96,18 +108,6 @@
             btnDeleteJob = new Button();
             btnCloseJob = new Button();
             btnCompleteJob = new Button();
-            tabPage5 = new TabPage();
-            grpQueues = new GroupBox();
-            btnUpdateQueue = new Button();
-            dgQueues = new DataGridView();
-            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            distributionPolicyIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            labelsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            queueBindingBindingSource = new BindingSource(components);
-            btnCreateQueue = new Button();
-            btnDeleteQueue = new Button();
             grpTraces = new GroupBox();
             menuStrip1 = new MenuStrip();
             optionsToolStripMenuItem = new ToolStripMenuItem();
@@ -120,6 +120,10 @@
             ((System.ComponentModel.ISupportInitialize)distributionPolicyBindingBindingSource).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage5.SuspendLayout();
+            grpQueues.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgQueues).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)queueBindingBindingSource).BeginInit();
             tabPage2.SuspendLayout();
             grpWorkers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgWorkers).BeginInit();
@@ -128,10 +132,6 @@
             grpJobs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgJobs).BeginInit();
             ((System.ComponentModel.ISupportInitialize)jobBindingBindingSource).BeginInit();
-            tabPage5.SuspendLayout();
-            grpQueues.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgQueues).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)queueBindingBindingSource).BeginInit();
             grpTraces.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerMain).BeginInit();
@@ -147,13 +147,13 @@
             txtTrace.Multiline = true;
             txtTrace.Name = "txtTrace";
             txtTrace.ScrollBars = ScrollBars.Vertical;
-            txtTrace.Size = new Size(1148, 138);
+            txtTrace.Size = new Size(1148, 163);
             txtTrace.TabIndex = 0;
             // 
             // btnCreateDistPolicy
             // 
             btnCreateDistPolicy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateDistPolicy.Location = new Point(6, 439);
+            btnCreateDistPolicy.Location = new Point(6, 435);
             btnCreateDistPolicy.Name = "btnCreateDistPolicy";
             btnCreateDistPolicy.Size = new Size(110, 23);
             btnCreateDistPolicy.TabIndex = 1;
@@ -170,7 +170,7 @@
             grpDistributionPolicies.Dock = DockStyle.Fill;
             grpDistributionPolicies.Location = new Point(3, 3);
             grpDistributionPolicies.Name = "grpDistributionPolicies";
-            grpDistributionPolicies.Size = new Size(1140, 468);
+            grpDistributionPolicies.Size = new Size(1140, 464);
             grpDistributionPolicies.TabIndex = 0;
             grpDistributionPolicies.TabStop = false;
             grpDistributionPolicies.Text = "Distribution Policies";
@@ -178,7 +178,7 @@
             // btnUpdateDistPolicy
             // 
             btnUpdateDistPolicy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateDistPolicy.Location = new Point(122, 439);
+            btnUpdateDistPolicy.Location = new Point(122, 435);
             btnUpdateDistPolicy.Name = "btnUpdateDistPolicy";
             btnUpdateDistPolicy.Size = new Size(110, 23);
             btnUpdateDistPolicy.TabIndex = 2;
@@ -189,7 +189,7 @@
             // btnDeleteDistPolicy
             // 
             btnDeleteDistPolicy.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeleteDistPolicy.Location = new Point(238, 439);
+            btnDeleteDistPolicy.Location = new Point(238, 435);
             btnDeleteDistPolicy.Name = "btnDeleteDistPolicy";
             btnDeleteDistPolicy.Size = new Size(110, 23);
             btnDeleteDistPolicy.TabIndex = 3;
@@ -209,7 +209,7 @@
             dgDistributionPolicies.Location = new Point(6, 22);
             dgDistributionPolicies.Name = "dgDistributionPolicies";
             dgDistributionPolicies.ReadOnly = true;
-            dgDistributionPolicies.Size = new Size(1128, 411);
+            dgDistributionPolicies.Size = new Size(1128, 407);
             dgDistributionPolicies.TabIndex = 0;
             dgDistributionPolicies.DataBindingComplete += dgJobs_DataBindingComplete;
             // 
@@ -284,14 +284,14 @@
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage5);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1154, 502);
+            tabControl1.Size = new Size(1154, 498);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -300,10 +300,127 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1146, 474);
+            tabPage1.Size = new Size(1146, 470);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Policies";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(grpQueues);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(1146, 470);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Queues";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // grpQueues
+            // 
+            grpQueues.Controls.Add(btnUpdateQueue);
+            grpQueues.Controls.Add(dgQueues);
+            grpQueues.Controls.Add(btnCreateQueue);
+            grpQueues.Controls.Add(btnDeleteQueue);
+            grpQueues.Dock = DockStyle.Fill;
+            grpQueues.Location = new Point(3, 3);
+            grpQueues.Name = "grpQueues";
+            grpQueues.Size = new Size(1140, 464);
+            grpQueues.TabIndex = 2;
+            grpQueues.TabStop = false;
+            grpQueues.Text = "Queues";
+            // 
+            // btnUpdateQueue
+            // 
+            btnUpdateQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnUpdateQueue.Location = new Point(122, 435);
+            btnUpdateQueue.Name = "btnUpdateQueue";
+            btnUpdateQueue.Size = new Size(110, 23);
+            btnUpdateQueue.TabIndex = 2;
+            btnUpdateQueue.Text = "Update";
+            btnUpdateQueue.UseVisualStyleBackColor = true;
+            btnUpdateQueue.Click += btnUpdateQueue_Click;
+            // 
+            // dgQueues
+            // 
+            dgQueues.AllowUserToAddRows = false;
+            dgQueues.AllowUserToDeleteRows = false;
+            dgQueues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgQueues.AutoGenerateColumns = false;
+            dgQueues.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgQueues.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn1, nameDataGridViewTextBoxColumn1, distributionPolicyIdDataGridViewTextBoxColumn, labelsDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1 });
+            dgQueues.DataSource = queueBindingBindingSource;
+            dgQueues.Location = new Point(6, 22);
+            dgQueues.Name = "dgQueues";
+            dgQueues.ReadOnly = true;
+            dgQueues.Size = new Size(1128, 407);
+            dgQueues.TabIndex = 0;
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            idDataGridViewTextBoxColumn1.ReadOnly = true;
+            idDataGridViewTextBoxColumn1.Width = 240;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            nameDataGridViewTextBoxColumn1.Width = 240;
+            // 
+            // distributionPolicyIdDataGridViewTextBoxColumn
+            // 
+            distributionPolicyIdDataGridViewTextBoxColumn.DataPropertyName = "DistributionPolicyId";
+            distributionPolicyIdDataGridViewTextBoxColumn.HeaderText = "Distribution Policy Id";
+            distributionPolicyIdDataGridViewTextBoxColumn.Name = "distributionPolicyIdDataGridViewTextBoxColumn";
+            distributionPolicyIdDataGridViewTextBoxColumn.ReadOnly = true;
+            distributionPolicyIdDataGridViewTextBoxColumn.Width = 240;
+            // 
+            // labelsDataGridViewTextBoxColumn
+            // 
+            labelsDataGridViewTextBoxColumn.DataPropertyName = "Labels";
+            labelsDataGridViewTextBoxColumn.HeaderText = "Labels";
+            labelsDataGridViewTextBoxColumn.Name = "labelsDataGridViewTextBoxColumn";
+            labelsDataGridViewTextBoxColumn.ReadOnly = true;
+            labelsDataGridViewTextBoxColumn.Width = 390;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "ETag";
+            dataGridViewTextBoxColumn1.HeaderText = "ETag";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 255;
+            // 
+            // queueBindingBindingSource
+            // 
+            queueBindingBindingSource.DataSource = typeof(BindingModels.QueueBinding);
+            // 
+            // btnCreateQueue
+            // 
+            btnCreateQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCreateQueue.Location = new Point(6, 435);
+            btnCreateQueue.Name = "btnCreateQueue";
+            btnCreateQueue.Size = new Size(110, 23);
+            btnCreateQueue.TabIndex = 1;
+            btnCreateQueue.Text = "Create";
+            btnCreateQueue.UseVisualStyleBackColor = true;
+            btnCreateQueue.Click += btnCreateQueue_Click;
+            // 
+            // btnDeleteQueue
+            // 
+            btnDeleteQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnDeleteQueue.Location = new Point(238, 435);
+            btnDeleteQueue.Name = "btnDeleteQueue";
+            btnDeleteQueue.Size = new Size(110, 23);
+            btnDeleteQueue.TabIndex = 3;
+            btnDeleteQueue.Text = "Delete";
+            btnDeleteQueue.UseVisualStyleBackColor = true;
+            btnDeleteQueue.Click += btnDeleteQueue_Click;
             // 
             // tabPage2
             // 
@@ -311,7 +428,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1146, 474);
+            tabPage2.Size = new Size(1146, 470);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Workers";
             tabPage2.UseVisualStyleBackColor = true;
@@ -319,7 +436,7 @@
             // grpWorkers
             // 
             grpWorkers.Controls.Add(label2);
-            grpWorkers.Controls.Add(txtWorkerFilter);
+            grpWorkers.Controls.Add(txtWorkersSearchBox);
             grpWorkers.Controls.Add(btnUpdateWorker);
             grpWorkers.Controls.Add(btnDeregisterWorker);
             grpWorkers.Controls.Add(btnRespondToOffer);
@@ -330,7 +447,7 @@
             grpWorkers.Dock = DockStyle.Fill;
             grpWorkers.Location = new Point(3, 3);
             grpWorkers.Name = "grpWorkers";
-            grpWorkers.Size = new Size(1140, 468);
+            grpWorkers.Size = new Size(1140, 464);
             grpWorkers.TabIndex = 0;
             grpWorkers.TabStop = false;
             grpWorkers.Text = "Workers";
@@ -344,19 +461,19 @@
             label2.TabIndex = 9;
             label2.Text = "Search:";
             // 
-            // txtWorkerFilter
+            // txtWorkersSearchBox
             // 
-            txtWorkerFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtWorkerFilter.Location = new Point(57, 22);
-            txtWorkerFilter.Name = "txtWorkerFilter";
-            txtWorkerFilter.Size = new Size(1069, 23);
-            txtWorkerFilter.TabIndex = 8;
-            txtWorkerFilter.TextChanged += txtWorkerFilter_TextChanged;
+            txtWorkersSearchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtWorkersSearchBox.Location = new Point(57, 22);
+            txtWorkersSearchBox.Name = "txtWorkersSearchBox";
+            txtWorkersSearchBox.Size = new Size(1069, 23);
+            txtWorkersSearchBox.TabIndex = 8;
+            txtWorkersSearchBox.TextChanged += txtWorkersSearchBox_TextChanged;
             // 
             // btnUpdateWorker
             // 
             btnUpdateWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateWorker.Location = new Point(122, 439);
+            btnUpdateWorker.Location = new Point(122, 435);
             btnUpdateWorker.Name = "btnUpdateWorker";
             btnUpdateWorker.Size = new Size(110, 23);
             btnUpdateWorker.TabIndex = 2;
@@ -367,7 +484,7 @@
             // btnDeregisterWorker
             // 
             btnDeregisterWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeregisterWorker.Location = new Point(586, 439);
+            btnDeregisterWorker.Location = new Point(586, 435);
             btnDeregisterWorker.Name = "btnDeregisterWorker";
             btnDeregisterWorker.Size = new Size(110, 23);
             btnDeregisterWorker.TabIndex = 6;
@@ -378,7 +495,7 @@
             // btnRespondToOffer
             // 
             btnRespondToOffer.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRespondToOffer.Location = new Point(354, 439);
+            btnRespondToOffer.Location = new Point(354, 435);
             btnRespondToOffer.Name = "btnRespondToOffer";
             btnRespondToOffer.Size = new Size(110, 23);
             btnRespondToOffer.TabIndex = 4;
@@ -389,7 +506,7 @@
             // btnRegisterWorker
             // 
             btnRegisterWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRegisterWorker.Location = new Point(470, 439);
+            btnRegisterWorker.Location = new Point(470, 435);
             btnRegisterWorker.Name = "btnRegisterWorker";
             btnRegisterWorker.Size = new Size(110, 23);
             btnRegisterWorker.TabIndex = 5;
@@ -400,7 +517,7 @@
             // btnCreateWorker
             // 
             btnCreateWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateWorker.Location = new Point(6, 439);
+            btnCreateWorker.Location = new Point(6, 435);
             btnCreateWorker.Name = "btnCreateWorker";
             btnCreateWorker.Size = new Size(110, 23);
             btnCreateWorker.TabIndex = 1;
@@ -420,7 +537,7 @@
             dgWorkers.Location = new Point(6, 59);
             dgWorkers.Name = "dgWorkers";
             dgWorkers.ReadOnly = true;
-            dgWorkers.Size = new Size(1120, 374);
+            dgWorkers.Size = new Size(1120, 370);
             dgWorkers.TabIndex = 0;
             dgWorkers.DataBindingComplete += dgWorkers_DataBindingComplete;
             // 
@@ -526,7 +643,7 @@
             // btnDeleteWorker
             // 
             btnDeleteWorker.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeleteWorker.Location = new Point(238, 439);
+            btnDeleteWorker.Location = new Point(238, 435);
             btnDeleteWorker.Name = "btnDeleteWorker";
             btnDeleteWorker.Size = new Size(110, 23);
             btnDeleteWorker.TabIndex = 3;
@@ -540,7 +657,7 @@
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1146, 474);
+            tabPage3.Size = new Size(1146, 470);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Jobs";
             tabPage3.UseVisualStyleBackColor = true;
@@ -548,7 +665,7 @@
             // grpJobs
             // 
             grpJobs.Controls.Add(label1);
-            grpJobs.Controls.Add(txtJobSearchBox);
+            grpJobs.Controls.Add(txtJobsSearchBox);
             grpJobs.Controls.Add(btnUpdateJob);
             grpJobs.Controls.Add(btnCreateJob);
             grpJobs.Controls.Add(btnCancelJob);
@@ -559,7 +676,7 @@
             grpJobs.Dock = DockStyle.Fill;
             grpJobs.Location = new Point(3, 3);
             grpJobs.Name = "grpJobs";
-            grpJobs.Size = new Size(1140, 468);
+            grpJobs.Size = new Size(1140, 464);
             grpJobs.TabIndex = 2;
             grpJobs.TabStop = false;
             grpJobs.Text = "Jobs";
@@ -573,19 +690,19 @@
             label1.TabIndex = 8;
             label1.Text = "Search:";
             // 
-            // txtJobSearchBox
+            // txtJobsSearchBox
             // 
-            txtJobSearchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtJobSearchBox.Location = new Point(57, 22);
-            txtJobSearchBox.Name = "txtJobSearchBox";
-            txtJobSearchBox.Size = new Size(1069, 23);
-            txtJobSearchBox.TabIndex = 7;
-            txtJobSearchBox.TextChanged += txtFilter_TextChanged;
+            txtJobsSearchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtJobsSearchBox.Location = new Point(57, 22);
+            txtJobsSearchBox.Name = "txtJobsSearchBox";
+            txtJobsSearchBox.Size = new Size(1069, 23);
+            txtJobsSearchBox.TabIndex = 7;
+            txtJobsSearchBox.TextChanged += txtJobsSearchBox_TextChanged;
             // 
             // btnUpdateJob
             // 
             btnUpdateJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateJob.Location = new Point(122, 439);
+            btnUpdateJob.Location = new Point(122, 435);
             btnUpdateJob.Name = "btnUpdateJob";
             btnUpdateJob.Size = new Size(110, 23);
             btnUpdateJob.TabIndex = 2;
@@ -596,7 +713,7 @@
             // btnCreateJob
             // 
             btnCreateJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateJob.Location = new Point(6, 439);
+            btnCreateJob.Location = new Point(6, 435);
             btnCreateJob.Name = "btnCreateJob";
             btnCreateJob.Size = new Size(110, 23);
             btnCreateJob.TabIndex = 1;
@@ -607,7 +724,7 @@
             // btnCancelJob
             // 
             btnCancelJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCancelJob.Location = new Point(354, 439);
+            btnCancelJob.Location = new Point(354, 435);
             btnCancelJob.Name = "btnCancelJob";
             btnCancelJob.Size = new Size(110, 23);
             btnCancelJob.TabIndex = 4;
@@ -628,7 +745,7 @@
             dgJobs.Location = new Point(6, 59);
             dgJobs.Name = "dgJobs";
             dgJobs.ReadOnly = true;
-            dgJobs.Size = new Size(1120, 374);
+            dgJobs.Size = new Size(1120, 370);
             dgJobs.TabIndex = 0;
             dgJobs.DataBindingComplete += dgJobs_DataBindingComplete;
             // 
@@ -741,7 +858,7 @@
             // btnDeleteJob
             // 
             btnDeleteJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeleteJob.Location = new Point(238, 439);
+            btnDeleteJob.Location = new Point(238, 435);
             btnDeleteJob.Name = "btnDeleteJob";
             btnDeleteJob.Size = new Size(110, 23);
             btnDeleteJob.TabIndex = 3;
@@ -752,7 +869,7 @@
             // btnCloseJob
             // 
             btnCloseJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCloseJob.Location = new Point(586, 439);
+            btnCloseJob.Location = new Point(586, 435);
             btnCloseJob.Name = "btnCloseJob";
             btnCloseJob.Size = new Size(110, 23);
             btnCloseJob.TabIndex = 6;
@@ -763,130 +880,13 @@
             // btnCompleteJob
             // 
             btnCompleteJob.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCompleteJob.Location = new Point(470, 439);
+            btnCompleteJob.Location = new Point(470, 435);
             btnCompleteJob.Name = "btnCompleteJob";
             btnCompleteJob.Size = new Size(110, 23);
             btnCompleteJob.TabIndex = 5;
             btnCompleteJob.Text = "Complete Job";
             btnCompleteJob.UseVisualStyleBackColor = true;
-            btnCompleteJob.Click += btnCancelJob_Click;
-            // 
-            // tabPage5
-            // 
-            tabPage5.Controls.Add(grpQueues);
-            tabPage5.Location = new Point(4, 24);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(1146, 474);
-            tabPage5.TabIndex = 4;
-            tabPage5.Text = "Queues";
-            tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // grpQueues
-            // 
-            grpQueues.Controls.Add(btnUpdateQueue);
-            grpQueues.Controls.Add(dgQueues);
-            grpQueues.Controls.Add(btnCreateQueue);
-            grpQueues.Controls.Add(btnDeleteQueue);
-            grpQueues.Dock = DockStyle.Fill;
-            grpQueues.Location = new Point(3, 3);
-            grpQueues.Name = "grpQueues";
-            grpQueues.Size = new Size(1140, 468);
-            grpQueues.TabIndex = 2;
-            grpQueues.TabStop = false;
-            grpQueues.Text = "Queues";
-            // 
-            // btnUpdateQueue
-            // 
-            btnUpdateQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateQueue.Location = new Point(122, 439);
-            btnUpdateQueue.Name = "btnUpdateQueue";
-            btnUpdateQueue.Size = new Size(110, 23);
-            btnUpdateQueue.TabIndex = 2;
-            btnUpdateQueue.Text = "Update";
-            btnUpdateQueue.UseVisualStyleBackColor = true;
-            btnUpdateQueue.Click += btnUpdateQueue_Click;
-            // 
-            // dgQueues
-            // 
-            dgQueues.AllowUserToAddRows = false;
-            dgQueues.AllowUserToDeleteRows = false;
-            dgQueues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgQueues.AutoGenerateColumns = false;
-            dgQueues.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgQueues.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn1, nameDataGridViewTextBoxColumn1, distributionPolicyIdDataGridViewTextBoxColumn, labelsDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1 });
-            dgQueues.DataSource = queueBindingBindingSource;
-            dgQueues.Location = new Point(6, 22);
-            dgQueues.Name = "dgQueues";
-            dgQueues.ReadOnly = true;
-            dgQueues.Size = new Size(1128, 411);
-            dgQueues.TabIndex = 0;
-            dgQueues.Click += btnCreateQueue_Click;
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            idDataGridViewTextBoxColumn1.ReadOnly = true;
-            idDataGridViewTextBoxColumn1.Width = 240;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            nameDataGridViewTextBoxColumn1.ReadOnly = true;
-            nameDataGridViewTextBoxColumn1.Width = 240;
-            // 
-            // distributionPolicyIdDataGridViewTextBoxColumn
-            // 
-            distributionPolicyIdDataGridViewTextBoxColumn.DataPropertyName = "DistributionPolicyId";
-            distributionPolicyIdDataGridViewTextBoxColumn.HeaderText = "Distribution Policy Id";
-            distributionPolicyIdDataGridViewTextBoxColumn.Name = "distributionPolicyIdDataGridViewTextBoxColumn";
-            distributionPolicyIdDataGridViewTextBoxColumn.ReadOnly = true;
-            distributionPolicyIdDataGridViewTextBoxColumn.Width = 240;
-            // 
-            // labelsDataGridViewTextBoxColumn
-            // 
-            labelsDataGridViewTextBoxColumn.DataPropertyName = "Labels";
-            labelsDataGridViewTextBoxColumn.HeaderText = "Labels";
-            labelsDataGridViewTextBoxColumn.Name = "labelsDataGridViewTextBoxColumn";
-            labelsDataGridViewTextBoxColumn.ReadOnly = true;
-            labelsDataGridViewTextBoxColumn.Width = 390;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "ETag";
-            dataGridViewTextBoxColumn1.HeaderText = "ETag";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.ReadOnly = true;
-            dataGridViewTextBoxColumn1.Width = 255;
-            // 
-            // queueBindingBindingSource
-            // 
-            queueBindingBindingSource.DataSource = typeof(BindingModels.QueueBinding);
-            // 
-            // btnCreateQueue
-            // 
-            btnCreateQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCreateQueue.Location = new Point(6, 439);
-            btnCreateQueue.Name = "btnCreateQueue";
-            btnCreateQueue.Size = new Size(110, 23);
-            btnCreateQueue.TabIndex = 1;
-            btnCreateQueue.Text = "Create";
-            btnCreateQueue.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteQueue
-            // 
-            btnDeleteQueue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDeleteQueue.Location = new Point(238, 439);
-            btnDeleteQueue.Name = "btnDeleteQueue";
-            btnDeleteQueue.Size = new Size(110, 23);
-            btnDeleteQueue.TabIndex = 3;
-            btnDeleteQueue.Text = "Delete";
-            btnDeleteQueue.UseVisualStyleBackColor = true;
-            btnDeleteQueue.Click += btnDeleteQueue_Click;
+            btnCompleteJob.Click += btnCompleteJob_Click;
             // 
             // grpTraces
             // 
@@ -894,7 +894,7 @@
             grpTraces.Dock = DockStyle.Fill;
             grpTraces.Location = new Point(0, 0);
             grpTraces.Name = "grpTraces";
-            grpTraces.Size = new Size(1154, 160);
+            grpTraces.Size = new Size(1154, 185);
             grpTraces.TabIndex = 30;
             grpTraces.TabStop = false;
             grpTraces.Text = "Traces";
@@ -919,7 +919,7 @@
             // 
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
             refreshToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.R;
-            refreshToolStripMenuItem.Size = new Size(217, 22);
+            refreshToolStripMenuItem.Size = new Size(215, 22);
             refreshToolStripMenuItem.Text = "&Refresh";
             refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
@@ -927,7 +927,7 @@
             // 
             legendToolStripMenuItem.Name = "legendToolStripMenuItem";
             legendToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.L;
-            legendToolStripMenuItem.Size = new Size(217, 22);
+            legendToolStripMenuItem.Size = new Size(215, 22);
             legendToolStripMenuItem.Text = "&Legend";
             legendToolStripMenuItem.Click += legendToolStripMenuItem_Click;
             // 
@@ -935,7 +935,7 @@
             // 
             createTestingDataToolStripMenuItem.Name = "createTestingDataToolStripMenuItem";
             createTestingDataToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.T;
-            createTestingDataToolStripMenuItem.Size = new Size(217, 22);
+            createTestingDataToolStripMenuItem.Size = new Size(215, 22);
             createTestingDataToolStripMenuItem.Text = "Create &Testing Data";
             createTestingDataToolStripMenuItem.Click += createTestingDataToolStripMenuItem_Click;
             // 
@@ -953,8 +953,8 @@
             // splitContainerMain.Panel2
             // 
             splitContainerMain.Panel2.Controls.Add(grpTraces);
-            splitContainerMain.Size = new Size(1154, 666);
-            splitContainerMain.SplitterDistance = 502;
+            splitContainerMain.Size = new Size(1154, 687);
+            splitContainerMain.SplitterDistance = 498;
             splitContainerMain.TabIndex = 31;
             // 
             // frmMain
@@ -962,7 +962,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(1154, 690);
+            ClientSize = new Size(1154, 711);
             Controls.Add(splitContainerMain);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -975,6 +975,10 @@
             ((System.ComponentModel.ISupportInitialize)distributionPolicyBindingBindingSource).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
+            grpQueues.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgQueues).EndInit();
+            ((System.ComponentModel.ISupportInitialize)queueBindingBindingSource).EndInit();
             tabPage2.ResumeLayout(false);
             grpWorkers.ResumeLayout(false);
             grpWorkers.PerformLayout();
@@ -985,10 +989,6 @@
             grpJobs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgJobs).EndInit();
             ((System.ComponentModel.ISupportInitialize)jobBindingBindingSource).EndInit();
-            tabPage5.ResumeLayout(false);
-            grpQueues.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgQueues).EndInit();
-            ((System.ComponentModel.ISupportInitialize)queueBindingBindingSource).EndInit();
             grpTraces.ResumeLayout(false);
             grpTraces.PerformLayout();
             menuStrip1.ResumeLayout(false);
@@ -1083,9 +1083,9 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private Button btnCreateQueue;
         private Button btnDeleteQueue;
-        private TextBox txtJobSearchBox;
+        private TextBox txtJobsSearchBox;
         private Label label1;
-        private TextBox txtWorkerFilter;
+        private TextBox txtWorkersSearchBox;
         private Label label2;
         private SplitContainer splitContainerMain;
     }
