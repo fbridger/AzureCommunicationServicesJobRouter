@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            var dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -134,6 +134,7 @@
             // 
             numPriority.Enabled = false;
             numPriority.Location = new Point(110, 18);
+            numPriority.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
             numPriority.Name = "numPriority";
             numPriority.Size = new Size(120, 23);
             numPriority.TabIndex = 1;
